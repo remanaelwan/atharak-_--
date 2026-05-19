@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Cairo", sans-serif;
+  --font-english: "Inter", sans-serif;
+
+  --color-background: #080C0A;
+  --color-surface: #0D1410;
+  --color-surface-elevated: #111A14;
+  --color-primary: #1A5C38;
+  --color-primary-light: #227A4A;
+  --color-primary-glow: #2ECC71;
+  --color-accent: #C9A84C;
+  --color-accent-light: #E8C96A;
+  --color-text-primary: #F0F4F1;
+  --color-text-secondary: #8A9E8F;
+  --color-text-muted: #4A5C4E;
+  --color-border: #1E2E22;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary antialiased;
+    font-family: var(--font-sans);
+  }
+
+  [lang="ar"] body {
+    font-family: var(--font-arabic);
+    direction: rtl;
+  }
+}
+
+.glass-card {
+  @apply bg-primary/10 backdrop-blur-xl border border-primary/20 rounded-2xl overflow-hidden;
+}
+
+.glow-shadow {
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.3);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+}
+

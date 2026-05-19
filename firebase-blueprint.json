@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "The user profile and legacy settings.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "language": { "type": "string", "enum": ["ar", "en"] },
+        "isPremium": { "type": "boolean" },
+        "isMemorial": { "type": "boolean" },
+        "totalCharity": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "WillItem": {
+      "title": "Will Item",
+      "description": "A digital will entry (letter, video, instruction).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["letter", "video", "voice", "instruction"] },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "mediaURL": { "type": "string" },
+        "recipients": { "type": "array", "items": { "type": "object" } },
+        "triggerEvent": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "title"]
+    },
+    "CharitySubscription": {
+      "title": "Charity Subscription",
+      "description": "Recurring donation settings.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "organizationId": { "type": "string" },
+        "amount": { "type": "number" },
+        "frequency": { "type": "string", "enum": ["daily", "weekly", "monthly"] },
+        "isActive": { "type": "boolean" },
+        "continueAfterDeath": { "type": "boolean" }
+      },
+      "required": ["userId", "organizationId", "amount"]
+    },
+    "Memory": {
+      "title": "Memory",
+      "description": "A preserved memory (photo, video, text).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["photo", "video", "voice", "text"] },
+        "title": { "type": "string" },
+        "mediaURL": { "type": "string" },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles."
+    },
+    "/users/{userId}/will_items/{itemId}": {
+      "schema": "WillItem",
+      "description": "Digital will items."
+    },
+    "/users/{userId}/charity_subscriptions/{subId}": {
+      "schema": "CharitySubscription",
+      "description": "Charity subscriptions."
+    },
+    "/users/{userId}/memories/{memoryId}": {
+      "schema": "Memory",
+      "description": "Saved memories."
+    }
+  }
+}

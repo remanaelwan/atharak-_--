@@ -1,0 +1,6 @@
+{
+  "name": "Atharak | أثرك",
+  "description": "A premium AI-powered platform to preserve memories, organize digital legacies, and continue charity afterlife.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
